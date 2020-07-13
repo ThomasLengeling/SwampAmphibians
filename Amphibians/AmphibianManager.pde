@@ -14,24 +14,35 @@ class AmphibianManager {
 
   //load all the amphibians
   void loadAll() {
-    String path = sketchPath()+"/data/SVG_Amphibians/";
+    //String path = sketchPath()+"/data/SVG_Amphibians/";
+    String path = sketchPath()+"/data/All/";
     println("load from "+path);
     String[] filenames = listFileNames(path);
     printArray(filenames);
 
     int i = 0;
+    int j = 0;
     for (String fileNames : filenames ) {
-      Amphibian amp = new Amphibian("SVG_Amphibians/"+fileNames);
-      
-      float x = 
-      
+      //Amphibian amp = new Amphibian("SVG_Amphibians/"+fileNames);
+      Amphibian amp = new Amphibian("All/"+fileNames);
+
+      float posx = i * 200 + 100;
+      float posy = j * 200 + 100;
+      float sx = 0.25;
+      float sy = 0.25;
+
       amp.setId(i);
       amp.idName(fileNames);
       amp.setPos(posx, posy);
       amp.setScale(sx, sy);
-      
+
       ampArray.add(amp);
       i++;
+      if (i >= 5) {
+        j++;
+        i=0;
+      }
+      
     }
 
     println(ampArray.size());
@@ -41,6 +52,12 @@ class AmphibianManager {
   void draw(int index) {
     if (index >=0  && index < ampArray.size())
       ((Amphibian)ampArray.get(index)).draw();
+  }
+  
+    //draw individual ones
+  void drawCenter(int index) {
+    if (index >=0  && index < ampArray.size())
+      ((Amphibian)ampArray.get(index)).drawCenter();
   }
 
   void update(int index) {

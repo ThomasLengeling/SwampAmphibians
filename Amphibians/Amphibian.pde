@@ -7,7 +7,7 @@ class Amphibian {
 
   //animatio
   float animTime = 0;
-  float animeInc = 0.005;
+  float animeInc = 0.001;
 
   boolean lockAnim = false;
 
@@ -24,6 +24,8 @@ class Amphibian {
 
     shp = RG.loadShape(fileName);
     shp = RG.centerIn(shp, g, 100);
+
+    animeInc += random(0.001, 0.01);
   }
 
   ///set id
@@ -51,6 +53,7 @@ class Amphibian {
     pushMatrix();
 
     translate(500, 500);
+    scale(scX, scY);
     noFill();
 
     stroke(0, 200);
@@ -71,11 +74,14 @@ class Amphibian {
 
     pushMatrix();
 
-    translate(posX, posY);
+    translate(posX + 200, posY + 200);
     scale(scX, scY);
+
+    //scale(2.0 - animTime*5, 2.0 - animTime*5);
+    //rotate(animTime*10);
     noFill();
 
-    stroke(0, 200);
+    stroke(0, 200-animTime*5);
 
     float t = constrain(map(mouseX, 10, width-10, 0, 1), 0, 1);
     float w = constrain(map(mouseY, 10, height-10, 1, 15), 1, 15);
