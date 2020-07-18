@@ -1,21 +1,27 @@
 class CreaturesManager {
-  ArrayList<Creatures> ampArray;
+  ArrayList<CreaturesParticle> creaArray;
 
   //constructor
-  CreaturesManager() {
-    ampArray = new ArrayList<Creatures>();
+  CreaturesManager(String fileName, float sx, float sy, float sz) {
+    creaArray = new ArrayList<CreaturesParticle>();
+
+    loadAll(fileName, sx, sy, sz);
   }
 
   //add indivual ones
   void add(String name) {
-    Creatures amp = new Creatures(name);
-    ampArray.add(amp);
+    CreaturesParticle amp = new CreaturesParticle(name);
+    creaArray.add(amp);
+  }
+
+  int numCreatures() {
+    return creaArray.size();
   }
 
   //load all the amphibians
-  void loadAll() {
+  void loadAll(String fileName, float sx, float sy, float sz) {
     //String path = sketchPath()+"/data/SVG_Amphibians/";
-    String path = sketchPath()+"/data/All/";
+    String path = sketchPath()+"/data/"+fileName+"/";
     println("load from "+path);
     String[] filenames = listFileNames(path);
     printArray(filenames);
@@ -24,58 +30,51 @@ class CreaturesManager {
     int j = 0;
     for (String fileNames : filenames ) {
       //Amphibian amp = new Amphibian("SVG_Amphibians/"+fileNames);
-      Creatures amp = new Creatures("All/"+fileNames);
+      CreaturesParticle amp = new CreaturesParticle(fileName+"/"+fileNames);
 
-      float posx = i * 200 + 100;
-      float posy = j * 200 + 100;
-      float sx = 0.25;
-      float sy = 0.25;
+      amp.creature.setScale(sx, sy, sz);
+      amp.creature.createCreature();
 
-      amp.setId(i);
-      amp.idName(fileNames);
-      amp.setPos(posx, posy);
-      amp.setScale(sx, sy);
+      amp.creature.setId(i);
+      amp.creature.idName(fileNames);
 
-      ampArray.add(amp);
+      creaArray.add(amp);
       i++;
       if (i >= 5) {
         j++;
         i=0;
       }
-      
     }
 
-    println(ampArray.size());
+    println(creaArray.size());
+  }
+
+  void updateScale(float sx, float sy, float sz) {
+    for (CreaturesParticle amp : creaArray) {
+      amp.creature.setScale(sx, sy, sz);
+    }
   }
 
   //draw individual ones
   void draw(int index) {
-    if (index >=0  && index < ampArray.size())
-      ((Creatures)ampArray.get(index)).draw();
-  }
-  
-    //draw individual ones
-  void drawCenter(int index) {
-    if (index >=0  && index < ampArray.size())
-      ((Creatures)ampArray.get(index)).drawCenter();
+    if (index >=0  && index < creaArray.size())
+      ((CreaturesParticle)creaArray.get(index)).draw();
   }
 
+
   void update(int index) {
-    if (index >=0  && index < ampArray.size())
-      ((Creatures)ampArray.get(index)).update();
+    // if (index >=0  && index < creaArray.size())
+    //((CreaturesParticle)creaArray.get(index)).update();
   }
 
   //draw all the amphibians
   void draw() {
-    for (Creatures amp : ampArray) {
+    for (CreaturesParticle amp : creaArray) {
       amp.draw();
     }
   }
 
   //update variables
   void update() {
-    for (Creatures amp : ampArray) {
-      amp.update();
-    }
   }
 }

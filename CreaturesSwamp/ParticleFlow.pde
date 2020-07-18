@@ -15,10 +15,8 @@ class ParticleNoise {
   Boolean flowing = true;
 
   Boolean stopped = false;
-  Boolean rippling = false;
   Boolean start = false;
 
-  float ripplingSize = 0;
   float distanceFromCenter = 0;
   int trembleTime = 0;
   int index;
@@ -35,17 +33,22 @@ class ParticleNoise {
   float noiseResistance = 1000;
   float domeRadius = 450;
 
+  ArrayList<PVector> historyPoints;
+  int maxHistoryPoints = 500;
+
 
   ParticleNoise (float _x, float _y, float _maxspeed, float _maxforce, int _index) {
     pos = new PVector(_x, _y);
     vel = new PVector(0, 0);
     acc = new PVector(0, 0);
-    size = 2;
+    size = 4;
     angle = 0;
     angleIncrement = random(0.005, 0.05);
     maxforce = _maxforce;
     maxspeed = _maxspeed;
     index = _index;
+
+    historyPoints = new ArrayList<PVector>();
   }
 
   /**
@@ -144,12 +147,62 @@ class ParticleNoise {
    */
   void display() {   
     /* --------Color fill-------- */
-    //fill(map(pos.x, width/2 - domeRadius, width/2 + domeRadius, 250, 360), 100, 100);    
+    // fill(map(pos.x, width/2 - domeRadius, width/2 + domeRadius, 250, 360), 100, 100);    
     /* --------White fill-------- */
-    fill(0);
+    fill(255, 10);
 
     noStroke();
-    ellipse(pos.x, pos.y, size+ripplingSize, size+ripplingSize);
+    //ellipse(pos.x, pos.y, (int)cp5.getController("strokeWeight").getValue()*2, (int)cp5.getController("strokeWeight").getValue()*2);
+
+
+    int incStep = (int)cp5.getController("stepCounter").getValue();
+    if ( incStep != 0) {
+      if ( frameCount % incStep == 0) {
+        historyPoints.add(new PVector(pos.x, pos.y));
+      }
+
+      stroke(255);
+      strokeWeight((int)cp5.getController("strokeWeight").getValue());
+      for (int i = 0; i < historyPoints.size()/3.0 - 1; i++) {
+        float x1 = historyPoints.get(i*3).x;
+        float y1 = historyPoints.get(i*3).y;
+
+        float x2 = historyPoints.get(i*3 + 1).x;
+        float y2 = historyPoints.get(i*3 + 1).y;
+        line(x1, y1, x2, y2);
+        // stroke(0);
+        // line(x, y, (int)cp5.getController("strokeWeight").getValue()*2, (int)cp5.getController("strokeWeight").getValue()*2);
+      }
+    } else {
+      fill(255);
+      noStroke();
+      ellipse(pos.x, pos.y, (int)cp5.getController("strokeWeight").getValue()*2, (int)cp5.getController("strokeWeight").getValue()*2);
+    }
+
+
+
+
+    /*
+    stroke(0);
+     strokeWeight(5);
+     if (historyPoints.size() >= 2) {
+     for (int i = 0; i < int(historyPoints.size()/5.0) -1; i++) {
+     float x1 = historyPoints.get(i*5).x;
+     float y1 = historyPoints.get(i*5).y;
+     
+     float x2 = historyPoints.get(i*5 + 1).x;
+     float y2 = historyPoints.get(i*5 + 1).y;
+     line(x1, y1, x2, y2);
+     
+     println(i+" "+i%2+" "+(i%2+1));
+     }
+     }
+     */
+
+    if (historyPoints.size() >  maxHistoryPoints) {
+      historyPoints.clear();
+      println("clean history");
+    }
   }
 
   /**
@@ -176,6 +229,8 @@ class ParticleNoise {
       float theta = atan2(pos.y - height/2, pos.x - width/2);
       pos.x = (width/2 + (domeRadius * cos(theta + PI)));
       pos.y = (height/2 + (domeRadius * sin(theta + PI)));
+      
+        historyPoints.clear();
     }
   }
 

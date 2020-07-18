@@ -8,24 +8,53 @@ class Creatures {
   //animatio
   float animTime = 0;
   float animeInc = 0.001;
+  float dirInc = 1;
 
   boolean lockAnim = false;
 
   float posX = 0;
   float posY = 0;
 
-  float scX = 1.0;
-  float scY = 1.0;
+  float scX = 0.009;
+  float scY = 0.009;
+  float scZ = 0.009;
+
+  //shape
+  float startX = 0;
+  float startY = 0;
+
+  float endX = 0;
+  float endY = 0;
+
+  RPoint[][] pointPaths;
 
   //contructor
   Creatures(String file) {
     fileName = file;
     println("loading "+fileName);
 
-    shp = RG.loadShape(fileName);
-    shp = RG.centerIn(shp, g, 100);
+    animeInc += random(0.001, 0.006);
+  }
 
-    animeInc += random(0.001, 0.01);
+  void createCreature() {
+
+    shp = RG.loadShape(fileName);
+    shp.scale(scX, scY, scZ);
+
+    println("size "+shp.width+" "+shp.height);
+    pointPaths = shp.getPointsInPaths();
+
+    int endI = pointPaths.length -1;
+    int endJ = pointPaths[endI].length - 1;
+
+    startX = pointPaths[0][0].x;
+    startY = pointPaths[0][0].y;
+
+    endX  = pointPaths[endI][endJ].x;
+    endX  = pointPaths[endI][endJ].y;
+
+    println("start pos");
+    println(startX+" "+startY);
   }
 
   ///set id
@@ -43,30 +72,10 @@ class Creatures {
     posY = posy;
   }
 
-  void setScale(float sx, float sy) {
+  void setScale(float sx, float sy, float sz) {
     scX = sx;
     scY = sy;
-  }
-
-  //draw Amphibian at the center
-  void drawCenter() {
-    pushMatrix();
-
-    translate(500, 500);
-    scale(scX, scY);
-    noFill();
-
-    stroke(0, 200);
-
-    float t = constrain(map(mouseX, 10, width-10, 0, 1), 0, 1);
-    float w = constrain(map(mouseY, 10, height-10, 1, 15), 1, 15);
-
-    strokeWeight(w);
-
-    RShape[] splittedGroups = RG.split(shp, animTime); 
-    splittedGroups[0].draw();
-
-    popMatrix();
+    scZ = sz;
   }
 
   //draw in a specific location
@@ -74,19 +83,19 @@ class Creatures {
 
     pushMatrix();
 
-    translate(posX + 200, posY + 200);
-    scale(scX, scY);
+    translate(posX - startX, posY - startY);
+    //scale(scX, scY);
 
     //scale(2.0 - animTime*5, 2.0 - animTime*5);
-    //rotate(animTime*10);
+    //rotate(90 * dirInc);
     noFill();
 
-    stroke(0, 200-animTime*5);
+    stroke(255, 200-animTime*5);
 
     float t = constrain(map(mouseX, 10, width-10, 0, 1), 0, 1);
     float w = constrain(map(mouseY, 10, height-10, 1, 15), 1, 15);
 
-    strokeWeight(w);
+    strokeWeight((int)cp5.getController("strokeWeight").getValue());
 
     RShape[] splittedGroups = RG.split(shp, animTime); 
     splittedGroups[0].draw();
@@ -99,12 +108,34 @@ class Creatures {
     animate();
   }
 
+  void reset() {
+    lockAnim = false;
+    dirInc = 1;
+    animTime = 0.0;
+  }
+
+  boolean isDone() {
+    if (animTime <= 0 && lockAnim == true) {
+      return true;
+    }
+    return false;
+  }
+
   //animate creation of the Amphibian
   void animate() {
-    animTime  += animeInc;
+    if (!lockAnim) {
+      animTime  += animeInc * dirInc;
+    }
+
     if (animTime >= 1.0) {
-      lockAnim = true;
       animTime = 1.0;
+      dirInc *= -1;
+    }
+
+    if (animTime <= 0.0) {
+      lockAnim = true;
+      animTime = 0.0;
+      dirInc *= -1;
     }
   }
 }
