@@ -24,7 +24,7 @@ class CreaturesParticle {
     creature = new Creatures(name);
     
     creationTime  = 0.0;
-    creationInc = random(0.001, 0.004);
+    creationInc = random(0.0006, 0.0045);
   }
  
 
@@ -42,6 +42,8 @@ class CreaturesParticle {
       creature.update();
       if (creature.isDone()) {
         drawCreature = false;
+        particle.historyPoints.clear();
+        creature.resetValues();
       }
     } else {
       updateParticle();

@@ -34,7 +34,9 @@ class ParticleNoise {
   float domeRadius = 450;
 
   ArrayList<PVector> historyPoints;
-  int maxHistoryPoints = 500;
+  int maxHistoryPoints = 600;
+  
+  int skipSteps =3;
 
 
   ParticleNoise (float _x, float _y, float _maxspeed, float _maxforce, int _index) {
@@ -47,8 +49,10 @@ class ParticleNoise {
     maxforce = _maxforce;
     maxspeed = _maxspeed;
     index = _index;
+    maxHistoryPoints = (int)random(400, 650);
 
     historyPoints = new ArrayList<PVector>();
+    skipSteps = (int)random(3, 6.04);
   }
 
   /**
@@ -157,18 +161,18 @@ class ParticleNoise {
 
     int incStep = (int)cp5.getController("stepCounter").getValue();
     if ( incStep != 0) {
-      if ( frameCount % incStep == 0) {
+      if ( frameCount % skipSteps == 0) { // incStep
         historyPoints.add(new PVector(pos.x, pos.y));
       }
 
-      stroke(255);
+      stroke(240);
       strokeWeight((int)cp5.getController("strokeWeight").getValue());
-      for (int i = 0; i < historyPoints.size()/3.0 - 1; i++) {
-        float x1 = historyPoints.get(i*3).x;
-        float y1 = historyPoints.get(i*3).y;
+      for (int i = 0; i < historyPoints.size()/4.0 - 1; i++) {
+        float x1 = historyPoints.get(i*4).x;
+        float y1 = historyPoints.get(i*4).y;
 
-        float x2 = historyPoints.get(i*3 + 1).x;
-        float y2 = historyPoints.get(i*3 + 1).y;
+        float x2 = historyPoints.get(i*4 + 1).x;
+        float y2 = historyPoints.get(i*4 + 1).y;
         line(x1, y1, x2, y2);
         // stroke(0);
         // line(x, y, (int)cp5.getController("strokeWeight").getValue()*2, (int)cp5.getController("strokeWeight").getValue()*2);
@@ -220,17 +224,19 @@ class ParticleNoise {
    * Checks whether the particle is going out of bound and sets its position to the opposte side of the dome
    */
   void borders() {
-    float distance = dist(pos.x, pos.y, width/2, height/2);    
-    if (distance > domeRadius) {
-      /* --------Warp particles to a random location-------- */
-      //position();
-
-      /* --------Warp particles to opposite side-------- */
-      float theta = atan2(pos.y - height/2, pos.x - width/2);
-      pos.x = (width/2 + (domeRadius * cos(theta + PI)));
-      pos.y = (height/2 + (domeRadius * sin(theta + PI)));
-      
-        historyPoints.clear();
+    //float distance = dist(pos.x, pos.y, width/2, height/2);    
+    if (pos.x < 0 ) {
+      pos.x = width;
+      historyPoints.clear();
+    } else if (pos.x > width) {
+      pos.x = 0;
+      historyPoints.clear();
+    } else if (pos.y < 0 ) {
+      pos.y = height;
+      historyPoints.clear();
+    } else if (pos.y > height ) {
+      pos.x = 0;
+      historyPoints.clear();
     }
   }
 

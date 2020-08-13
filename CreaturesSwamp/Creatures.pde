@@ -28,12 +28,16 @@ class Creatures {
 
   RPoint[][] pointPaths;
 
+  float randSize = 0.1;
+
+  float randTrans = 0;
+
   //contructor
   Creatures(String file) {
     fileName = file;
     println("loading "+fileName);
 
-    animeInc += random(0.001, 0.006);
+    animeInc = random(0.0003, 0.01);
   }
 
   void createCreature() {
@@ -55,6 +59,15 @@ class Creatures {
 
     println("start pos");
     println(startX+" "+startY);
+
+    randSize = random(0.04, 0.35);
+    randTrans = random(0, 1);
+  }
+
+  void resetValues() {
+    randSize = random(0.04, 0.35);
+    randTrans = random(0, 1);
+    animeInc = random(0.0003, 0.01);
   }
 
   ///set id
@@ -86,11 +99,37 @@ class Creatures {
     translate(posX - startX, posY - startY);
     //scale(scX, scY);
 
-    //scale(2.0 - animTime*5, 2.0 - animTime*5);
-    //rotate(90 * dirInc);
+    if (randTrans> 0.6) {
+      scale(-1, 1);
+    }
+    if (randTrans > 0.3 && randTrans< 0.6) {
+       scale(1, -1);
+    }
+
+   if (randTrans > 0.0 && randTrans< 0.3) {
+       scale(-1, -1);
+    }
+    
+    if (dirInc >= 0) {
+      scale(1.0 - abs(animTime*randSize), 1.0 - abs(animTime*randSize));
+    } else {
+      scale(1.0 - abs(1.0*randSize), 1.0 - abs(1.0*randSize));
+    }
+
+    if (randTrans > 0.3) {
+      if (dirInc >= 0){
+        rotate(animTime*1.2);
+      }else{
+        rotate(abs(1.0*animTime*1.2));
+      }
+      //else {
+       // rotate(1.0*0.2);
+      //}
+    }
+
     noFill();
 
-    stroke(255, 200-animTime*5);
+    stroke(255, 10);//200-animTime*5);
 
     float t = constrain(map(mouseX, 10, width-10, 0, 1), 0, 1);
     float w = constrain(map(mouseY, 10, height-10, 1, 15), 1, 15);

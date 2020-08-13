@@ -2,15 +2,21 @@ class CreaturesManager {
   ArrayList<CreaturesParticle> creaArray;
 
   //constructor
-  CreaturesManager(String fileName, float sx, float sy, float sz) {
+  CreaturesManager() {
     creaArray = new ArrayList<CreaturesParticle>();
+  }
 
-    loadAll(fileName, sx, sy, sz);
+  CreaturesParticle getCreature(int id) {
+    return creaArray.get(id);
   }
 
   //add indivual ones
   void add(String name) {
     CreaturesParticle amp = new CreaturesParticle(name);
+    creaArray.add(amp);
+  }
+
+  void add(CreaturesParticle amp ) {
     creaArray.add(amp);
   }
 
@@ -27,9 +33,7 @@ class CreaturesManager {
     printArray(filenames);
 
     int i = 0;
-    int j = 0;
     for (String fileNames : filenames ) {
-      //Amphibian amp = new Amphibian("SVG_Amphibians/"+fileNames);
       CreaturesParticle amp = new CreaturesParticle(fileName+"/"+fileNames);
 
       amp.creature.setScale(sx, sy, sz);
@@ -40,10 +44,6 @@ class CreaturesManager {
 
       creaArray.add(amp);
       i++;
-      if (i >= 5) {
-        j++;
-        i=0;
-      }
     }
 
     println(creaArray.size());
