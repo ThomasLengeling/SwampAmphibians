@@ -1,0 +1,33 @@
+{
+    "warps": [
+        {
+            "adaptive": true,
+            "blend": {
+                "edges": "0, 0, 0, 0",
+                "exponent": 2.0,
+                "gamma": "1, 1, 1",
+                "luminance": "0.5, 0.5, 0.5"
+            },
+            "brightness": 1.0,
+            "corners": [
+                "0.248583, 0.0689208",
+                "0.707702, 0.118605",
+                "0.834754, 0.827704",
+                "0.106305, 0.814382"
+            ],
+            "linear": false,
+            "resolution": 16,
+            "type": 3,
+            "warp": {
+                "columns": 2,
+                "control points": [
+                    "0, 0",
+                    "0, 1",
+                    "1, 0",
+                    "1, 1"
+                ],
+                "rows": 2
+            }
+        }
+    ]
+}

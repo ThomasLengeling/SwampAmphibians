@@ -8,3 +8,12 @@ application.windows32
 application.windows64
 application.macosx
 out
+
+
+#####
+# OS X temporary files that should never be committed
+
+.DS_Store
+*.swp
+*.lock
+profile

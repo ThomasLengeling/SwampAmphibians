@@ -1,7 +1,7 @@
 /*
 
  */
-
+import codeanticode.syphon.*;
 import geomerative.*;
 
 CreaturesManager ampDraw;
@@ -33,9 +33,12 @@ boolean   drawIndividuals = true;
 boolean   drawMap = false;
 boolean   drawGUI = false;
 
+//send frame for mapping
+SyphonServer server;
+
 void setup() {
-  fullScreen();
-  //size(1280, 720);
+  //fullScreen(P3D);
+  size(1920, 1080, P3D);
   smooth(16);
 
   RG.init(this);
@@ -79,6 +82,8 @@ void setup() {
 
   // randomSeed(0);
   // noiseSeed(0);
+  
+  server = new SyphonServer(this, "Swamp");
 }
 
 //Main draw
@@ -122,6 +127,9 @@ void draw() {
     drawGui();
   }
   updateGUI();
+  
+  //send screen
+    server.sendScreen();
 }
 
 
