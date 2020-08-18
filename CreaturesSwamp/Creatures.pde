@@ -15,9 +15,9 @@ class Creatures {
   float posX = 0;
   float posY = 0;
 
-  float scX = 0.009;
-  float scY = 0.009;
-  float scZ = 0.009;
+  float scX = 0.8;
+  float scY = 0.8;
+  float scZ = 0.8;
 
   //shape
   float startX = 0;
@@ -32,18 +32,23 @@ class Creatures {
 
   float randTrans = 0;
 
+  float rotationDir = 0; 
+
   //contructor
   Creatures(String file) {
     fileName = file;
     println("loading "+fileName);
 
-    animeInc = random(0.0003, 0.01);
+    animeInc = 0.005;//random(0.0003, 0.01);
   }
 
   void createCreature() {
 
     shp = RG.loadShape(fileName);
+    shp = RG.centerIn(shp, g);
+    /// shp.translate(shp.width/2.0, shp.height/2.0);
     shp.scale(scX, scY, scZ);
+
 
     println("size "+shp.width+" "+shp.height);
     pointPaths = shp.getPointsInPaths();
@@ -55,19 +60,21 @@ class Creatures {
     startY = pointPaths[0][0].y;
 
     endX  = pointPaths[endI][endJ].x;
-    endX  = pointPaths[endI][endJ].y;
+    endY  = pointPaths[endI][endJ].y;
 
     println("start pos");
     println(startX+" "+startY);
 
     randSize = random(0.04, 0.35);
-    randTrans = random(0, 1);
+    randTrans = random(-PI, PI);
+    rotationDir = random(-1.01, 1.01);
   }
 
   void resetValues() {
     randSize = random(0.04, 0.35);
-    randTrans = random(0, 1);
+    randTrans = random(-PI, PI);
     animeInc = random(0.0003, 0.01);
+    rotationDir = random(-1.01, 1.01);
   }
 
   ///set id
@@ -97,44 +104,48 @@ class Creatures {
     pushMatrix();
 
     translate(posX - startX, posY - startY);
-    //scale(scX, scY);
 
-    if (randTrans> 0.6) {
-      scale(-1, 1);
-    }
-    if (randTrans > 0.3 && randTrans< 0.6) {
-       scale(1, -1);
-    }
-
-   if (randTrans > 0.0 && randTrans< 0.3) {
-       scale(-1, -1);
-    }
-    
-    if (dirInc >= 0) {
-      scale(1.0 - abs(animTime*randSize), 1.0 - abs(animTime*randSize));
-    } else {
-      scale(1.0 - abs(1.0*randSize), 1.0 - abs(1.0*randSize));
-    }
-
-    if (randTrans > 0.3) {
-      if (dirInc >= 0){
-        rotate(animTime*1.2);
-      }else{
-        rotate(abs(1.0*animTime*1.2));
-      }
-      //else {
-       // rotate(1.0*0.2);
-      //}
-    }
 
     noFill();
-
-    stroke(255, 10);//200-animTime*5);
+    stroke(255);//200-animTime*5);
 
     float t = constrain(map(mouseX, 10, width-10, 0, 1), 0, 1);
     float w = constrain(map(mouseY, 10, height-10, 1, 15), 1, 15);
 
     strokeWeight((int)cp5.getController("strokeWeight").getValue());
+
+    /*
+    RPoint[] pts = shp.getBoundsPoints();
+     
+     for (int i = 0; i<4; i++) {
+     ellipse(pts[i].x, pts[i].y, 10, 10);
+     }
+     ellipse(center.x, center.y, 10, 10);
+     */
+     
+     
+    RPoint center = shp.getCenter();
+    translate(center.x, center.y);
+
+    rotate(randTrans);
+
+    if (tooggleRotate) {
+      if (randTrans > 0.3) {
+        if (dirInc > 0) {
+          rotate(abs(animTime*1.2)*rotationDir);
+        } else {
+          rotate(abs(1.0*1.2)*rotationDir);
+        }
+      }
+    }
+
+    if (toogleShift) {
+      if (dirInc > 0) {
+        scale(1.0 - abs(animTime*randSize)*rotationDir, 1.0 - abs(animTime*randSize)*rotationDir);
+      } else {
+        scale(1.0 - abs(1.0*randSize)*rotationDir, 1.0 - abs(1.0*randSize)*rotationDir);
+      }
+    }
 
     RShape[] splittedGroups = RG.split(shp, animTime); 
     splittedGroups[0].draw();

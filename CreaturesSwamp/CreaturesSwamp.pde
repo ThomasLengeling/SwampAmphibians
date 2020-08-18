@@ -31,7 +31,8 @@ boolean   ignoringStyles = true;
 
 boolean   drawIndividuals = true;
 boolean   drawMap = false;
-boolean   drawGUI = false;
+boolean   drawGUI = true;
+boolean   toogleTimer = false;
 
 //send frame for mapping
 SyphonServer server;
@@ -46,7 +47,7 @@ void setup() {
 
   //amphibians
   ampList = new CreaturesManager();
-  ampList.loadAll("SVG_Amphibians", 0.8, 0.8, 0.8);
+  ampList.loadAll("SVG_Amphibians", 0.9, 0.9, 0.9);
 
   birdList = new CreaturesManager();
   birdList.loadAll("SVG_Birds", 0.17, 0.17, 0.17);
@@ -82,7 +83,7 @@ void setup() {
 
   // randomSeed(0);
   // noiseSeed(0);
-  
+
   server = new SyphonServer(this, "Swamp");
 }
 
@@ -127,9 +128,9 @@ void draw() {
     drawGui();
   }
   updateGUI();
-  
+
   //send screen
-    server.sendScreen();
+  server.sendScreen();
 }
 
 
@@ -164,5 +165,17 @@ void keyPressed() {
 
   if (key == 'c') {
     creatureParticle.createCreature();
+  }
+
+  if (key == 'r') {
+    cp5.getController("NumAmp").setValue(1);
+  }
+
+  if (key == 'c') {
+    clean();
+  }
+
+  if (key == 's') {
+    saveFrame("output/frames####.png");
   }
 }

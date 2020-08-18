@@ -71,7 +71,7 @@ void setupGui() {
   //
   cp5.addSlider("NumMammals")
     .setPosition(20, 90)
-     .setDecimalPrecision(0)
+    .setDecimalPrecision(0)
     .setValue(0)
     .setRange(0, numMammals)
     .setGroup(g1)
@@ -153,6 +153,26 @@ void setupGui() {
     //.setSliderMode(Slider.FLEXIBLE)
     ;
 
+  cp5.addToggle("rotateCreatures")
+    .setPosition(200, 210)
+    .setValue(false)
+    .setSize(30, 30)
+    .setGroup(g1)
+    ;
+
+  cp5.addToggle("shiftCreatrues")
+    .setPosition(250, 210)
+    .setValue(false)
+    .setSize(30, 30)
+    .setGroup(g1)
+    ;
+
+  cp5.addToggle("clean")
+    .setPosition(300, 210)
+    .setValue(false)
+    .setSize(30, 30)
+    .setGroup(g1)
+    ;
 
   //controllTimer
   controlTimer = new ControlTimer();
@@ -168,6 +188,7 @@ void setupGui() {
 }
 
 
+
 void drawGui() {
 
   hint(DISABLE_DEPTH_TEST);
@@ -177,33 +198,34 @@ void drawGui() {
 
 void updateGUI() {
   //timer controll
-  textTimer.setValue(controlTimer.toString());
-  if (controlTimer.second() == 10 && controlTimer.minute() == 0) {
+  if (toogleTimer) {
+    textTimer.setValue(controlTimer.toString());
+    if (controlTimer.second() == 10 && controlTimer.minute() == 0) {
 
 
-    //slider value 0
-    if (sliderCount.getValue() <= 4) {
-      int currId = (int)sliderCount.getValue();
-      println("value "+sliderCount.getValue());
+      //slider value 0
+      if (sliderCount.getValue() <= 4) {
+        int currId = (int)sliderCount.getValue();
+        println("value "+sliderCount.getValue());
 
-      cp5.getController("NumAmp").setValue(creatures[currId][0] + (int)random(2.01));
-      cp5.getController("NumBird").setValue(creatures[currId][1]+ (int)random(2.01));
-      cp5.getController("NumInsec").setValue(creatures[currId][2]+ (int)random(2.01));
-      cp5.getController("NumMammals").setValue(creatures[currId][3]+ (int)random(2.01));
-      cp5.getController("NumPlants").setValue(creatures[currId][4]+ (int)random(2.01));
-      sliderCount.setValue(sliderCount.getValue() + 1);
-    } else {
-      sliderCount.setValue(0);
+        cp5.getController("NumAmp").setValue(creatures[currId][0] + (int)random(2.01));
+        cp5.getController("NumBird").setValue(creatures[currId][1]+ (int)random(2.01));
+        cp5.getController("NumInsec").setValue(creatures[currId][2]+ (int)random(2.01));
+        cp5.getController("NumMammals").setValue(creatures[currId][3]+ (int)random(2.01));
+        cp5.getController("NumPlants").setValue(creatures[currId][4]+ (int)random(2.01));
+        sliderCount.setValue(sliderCount.getValue() + 1);
+      } else {
+        sliderCount.setValue(0);
+      }
+      controlTimer.reset();
     }
-    controlTimer.reset();
   }
 }
 
 void NumAmp(int value) {
   ampList = new CreaturesManager();
-  ampList.loadAll("SVG_Amphibians", 0.009, 0.009, 0.009);
-
-  //ampDraw.creaArray.clear();
+  ampList.loadAll("SVG_Amphibians", 0.09, 0.09, 0.09);
+  
   for (int i = 0; i < value; i++) {
     ampDraw.add( ampList.getCreature((int)random(0, ampList.numCreatures()-1)));
   }
@@ -211,22 +233,17 @@ void NumAmp(int value) {
 
 void NumBird(int value) {
   birdList = new CreaturesManager();
-  birdList.loadAll("SVG_Birds", 0.17, 0.17, 0.17);
+  birdList.loadAll("SVG_Birds", 0.07, 0.07, 0.07);
 
-
-  //birdDraw.creaArray.clear();
   for (int i = 0; i < value; i++) {
     birdDraw.add( birdList.getCreature((int)random(0, birdList.numCreatures()-1)));
- }
+  }
 }
 
 void NumInsec(int value) {
-
   insecList = new CreaturesManager();
-  insecList.loadAll("SVG_Insects", 0.17, 0.17, 0.17);
+  insecList.loadAll("SVG_Insects", 0.07, 0.07, 0.07);
 
-
-  ////insecDraw.creaArray.clear();
   for (int i = 0; i < value; i++) {
     insecDraw.add( insecList.getCreature((int)random(0, insecList.numCreatures()-1)));
   }
@@ -234,9 +251,8 @@ void NumInsec(int value) {
 
 void NumMammals(int value) {
   mammalsList = new CreaturesManager();
-  mammalsList.loadAll("SVG_Mammals", 0.17, 0.17, 0.17);
+  mammalsList.loadAll("SVG_Mammals", 0.07, 0.07, 0.07);
 
-  //mammalsDraw.creaArray.clear();
   for (int i = 0; i < value; i++) {
     mammalsDraw.add(mammalsList.getCreature((int)random(0, mammalsList.numCreatures()-1)));
   }
@@ -244,11 +260,28 @@ void NumMammals(int value) {
 
 void NumPlants(int value) {
   plantsList = new CreaturesManager();
-  plantsList.loadAll("SVG_Plants", 0.17, 0.17, 0.17);
+  plantsList.loadAll("SVG_Plants", 0.07, 0.07, 0.07);
 
-  ////plantsDraw.creaArray.clear();
   for (int i = 0; i < value; i++) {
     plantsDraw.add(plantsList.getCreature((int)random(0, plantsList.numCreatures()-1)));
   }
-  
+}
+
+void  clean(){
+  ampDraw.clear();
+  birdDraw.clear();
+  insecDraw.clear();
+  mammalsDraw.clear();
+  plantsDraw.clear();
+}
+
+//toogle buttons
+boolean tooggleRotate = true;
+boolean toogleShift = true;
+void rotateCreatures(){
+ tooggleRotate = !tooggleRotate;
+}
+
+void shiftCreatrues(){
+  toogleShift =!toogleShift;
 }

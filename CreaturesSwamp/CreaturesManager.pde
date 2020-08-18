@@ -23,6 +23,10 @@ class CreaturesManager {
   int numCreatures() {
     return creaArray.size();
   }
+  
+  void clear(){
+    creaArray.clear();
+  }
 
   //load all the amphibians
   void loadAll(String fileName, float sx, float sy, float sz) {

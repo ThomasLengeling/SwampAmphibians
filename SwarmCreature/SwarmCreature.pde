@@ -4,7 +4,8 @@ Generative Swarm program
  */
 boolean ignoringStyles = true;
 
-SwampMap swapMap;
+SwampMap swapMap01;
+SwampMap swapMap02;
 
 void setup() {
   size(1024, 768);
@@ -13,13 +14,19 @@ void setup() {
   RG.init(this);
   RG.ignoreStyles(ignoringStyles);
 
-  swapMap = new SwampMap();
+  swapMap01 = new SwampMap();
+  swapMap02  = new SwampMap();
 }
 
 void draw() {
 
   background(255);
+  
+  pushMatrix();
+  
 
-  swapMap.draw();
+  swapMap01.draw();
+  swapMap02.draw();
+  popMatrix();
   
 }
