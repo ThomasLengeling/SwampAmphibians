@@ -32,7 +32,11 @@ boolean   ignoringStyles = true;
 boolean   drawIndividuals = true;
 boolean   drawMap = false;
 boolean   drawGUI = true;
-boolean   toogleTimer = false;
+
+//toogle timer
+boolean   toogleTimer = true;
+
+int maxCreatrues = 200;
 
 //send frame for mapping
 SyphonServer server;
@@ -85,6 +89,12 @@ void setup() {
   // noiseSeed(0);
 
   server = new SyphonServer(this, "Swamp");
+
+  cp5.getController("NumAmp").setValue(creatures[0][0]);
+  cp5.getController("NumBird").setValue(creatures[0][1]);
+  cp5.getController("NumInsec").setValue(creatures[0][2]);
+  cp5.getController("NumMammals").setValue(creatures[0][3]);
+  cp5.getController("NumPlants").setValue(creatures[0][4]);
 }
 
 //Main draw
@@ -92,7 +102,11 @@ void draw() {
 
   noStroke();
   int alpha = (int)cp5.getController("alpha").getValue();
-  fill(0, alpha);
+  if (tooggleColor) {
+    fill(255, alpha);
+  } else {
+    fill(0, alpha);
+  }
   rect(0, 0, width, height);
 
 
@@ -119,6 +133,16 @@ void draw() {
     }
   }
 
+  //clean creatures if it becomes too big
+  int maxC =  ampDraw.numCreatures() + birdDraw.numCreatures() + insecDraw.numCreatures() + mammalsDraw.numCreatures() +  plantsDraw.numCreatures();
+
+  textMaxCreatures.setValue("Max: "+maxC);
+
+  if (maxC > maxCreatrues) {
+    clean();
+    sliderCount.setValue(0);
+  }
+
   if (!drawIndividuals) {
     ampList.draw();
   };
@@ -137,6 +161,11 @@ void draw() {
 void keyPressed() {
   if (key == 'g') {
     drawGUI = !drawGUI;
+    if (tooggleColor) {
+      background(255);
+    } else {
+      background(0);
+    }
   }
   if (key == 'm') {
     drawMap = !drawMap;

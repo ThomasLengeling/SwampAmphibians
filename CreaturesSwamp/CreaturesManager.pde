@@ -31,8 +31,9 @@ class CreaturesManager {
   //load all the amphibians
   void loadAll(String fileName, float sx, float sy, float sz) {
     //String path = sketchPath()+"/data/SVG_Amphibians/";
-    String path = sketchPath()+"/data/"+fileName+"/";
+    String path = dataPath("")+"/"+fileName+"/";
     println("load from "+path);
+    println("dataPath: "+dataPath(""));
     String[] filenames = listFileNames(path);
     printArray(filenames);
 

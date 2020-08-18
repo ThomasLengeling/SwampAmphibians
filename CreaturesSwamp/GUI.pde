@@ -6,6 +6,7 @@ Slider sliderCount;
 
 ControlTimer controlTimer;
 Textlabel textTimer;
+Textlabel textMaxCreatures;
 
 
 void setupGui() {
@@ -14,8 +15,8 @@ void setupGui() {
   Group g1 = cp5.addGroup("g1")
     .setPosition(10, 20)
     .setBackgroundHeight(300)
-    .setWidth(400)
-    .setBackgroundColor(color(150, 50))
+    .setWidth(430)
+    .setBackgroundColor(color(150, 150))
     ;
 
   ////
@@ -23,7 +24,7 @@ void setupGui() {
     .setPosition(20, 30)
     .setValue(0)
     .setRange(0, numAmp)
-    .setDecimalPrecision(0)
+    .setDecimalPrecision(1)
     .setGroup(g1)
     ;
 
@@ -40,7 +41,7 @@ void setupGui() {
     .setPosition(20, 50)
     .setValue(0)
     .setRange(0, numBird)
-    .setDecimalPrecision(0)
+    .setDecimalPrecision(1)
     .setGroup(g1)
     ;
 
@@ -57,7 +58,7 @@ void setupGui() {
     .setPosition(20, 70)
     .setValue(0)
     .setRange(0, numInsc)
-    .setDecimalPrecision(0)
+    .setDecimalPrecision(1)
     .setGroup(g1)
     ;
   cp5.addRange("rangeInsec")
@@ -71,7 +72,7 @@ void setupGui() {
   //
   cp5.addSlider("NumMammals")
     .setPosition(20, 90)
-    .setDecimalPrecision(0)
+    .setDecimalPrecision(1)
     .setValue(0)
     .setRange(0, numMammals)
     .setGroup(g1)
@@ -89,7 +90,7 @@ void setupGui() {
     .setPosition(20, 110)
     .setValue(0)
     .setRange(0, numPlants)
-    .setDecimalPrecision(0)
+    .setDecimalPrecision(1)
     .setGroup(g1)
     ;
   cp5.addRange("rangePlants")
@@ -112,9 +113,9 @@ void setupGui() {
 
   cp5.addSlider("alpha")
     .setPosition(20, 150)
-    .setValue(6)
-    .setRange(0, 255)
-    .setDecimalPrecision(0)
+    .setValue(2.0)
+    .setRange(0, 50)
+    .setDecimalPrecision(1)
     .setGroup(g1)
     ;
 
@@ -153,14 +154,14 @@ void setupGui() {
     //.setSliderMode(Slider.FLEXIBLE)
     ;
 
-  cp5.addToggle("rotateCreatures")
+  cp5.addToggle("rotateC")
     .setPosition(200, 210)
     .setValue(false)
     .setSize(30, 30)
     .setGroup(g1)
     ;
 
-  cp5.addToggle("shiftCreatrues")
+  cp5.addToggle("shiftC")
     .setPosition(250, 210)
     .setValue(false)
     .setSize(30, 30)
@@ -173,16 +174,25 @@ void setupGui() {
     .setSize(30, 30)
     .setGroup(g1)
     ;
+    
+  cp5.addToggle("BlackWhite")
+    .setPosition(350, 210)
+    .setValue(false)
+    .setSize(30, 30)
+    .setGroup(g1)
+    ;
 
   //controllTimer
   controlTimer = new ControlTimer();
   textTimer = cp5.addTextlabel("--")
     .setPosition(20, 270)
     .setGroup(g1);
-
+  
   controlTimer.setSpeedOfTime(1);
-
-
+  
+  textMaxCreatures  = cp5.addTextlabel("M")
+    .setPosition(80, 270)
+    .setGroup(g1);
 
   cp5.setAutoDraw(false);
 }
@@ -200,11 +210,12 @@ void updateGUI() {
   //timer controll
   if (toogleTimer) {
     textTimer.setValue(controlTimer.toString());
-    if (controlTimer.second() == 10 && controlTimer.minute() == 0) {
+    
+    if (controlTimer.second() == 40 && controlTimer.minute() == 0) {
 
 
       //slider value 0
-      if (sliderCount.getValue() <= 4) {
+      if (sliderCount.getValue() <= 9) {
         int currId = (int)sliderCount.getValue();
         println("value "+sliderCount.getValue());
 
@@ -224,8 +235,8 @@ void updateGUI() {
 
 void NumAmp(int value) {
   ampList = new CreaturesManager();
-  ampList.loadAll("SVG_Amphibians", 0.09, 0.09, 0.09);
-  
+  ampList.loadAll("SVG_Amphibians", 0.075, 0.075, 0.075);
+
   for (int i = 0; i < value; i++) {
     ampDraw.add( ampList.getCreature((int)random(0, ampList.numCreatures()-1)));
   }
@@ -233,7 +244,7 @@ void NumAmp(int value) {
 
 void NumBird(int value) {
   birdList = new CreaturesManager();
-  birdList.loadAll("SVG_Birds", 0.07, 0.07, 0.07);
+  birdList.loadAll("SVG_Birds", 0.075, 0.075, 0.075);
 
   for (int i = 0; i < value; i++) {
     birdDraw.add( birdList.getCreature((int)random(0, birdList.numCreatures()-1)));
@@ -242,7 +253,7 @@ void NumBird(int value) {
 
 void NumInsec(int value) {
   insecList = new CreaturesManager();
-  insecList.loadAll("SVG_Insects", 0.07, 0.07, 0.07);
+  insecList.loadAll("SVG_Insects", 0.06, 0.06, 0.06);
 
   for (int i = 0; i < value; i++) {
     insecDraw.add( insecList.getCreature((int)random(0, insecList.numCreatures()-1)));
@@ -251,7 +262,7 @@ void NumInsec(int value) {
 
 void NumMammals(int value) {
   mammalsList = new CreaturesManager();
-  mammalsList.loadAll("SVG_Mammals", 0.07, 0.07, 0.07);
+  mammalsList.loadAll("SVG_Mammals", 0.078, 0.078, 0.078);
 
   for (int i = 0; i < value; i++) {
     mammalsDraw.add(mammalsList.getCreature((int)random(0, mammalsList.numCreatures()-1)));
@@ -260,14 +271,14 @@ void NumMammals(int value) {
 
 void NumPlants(int value) {
   plantsList = new CreaturesManager();
-  plantsList.loadAll("SVG_Plants", 0.07, 0.07, 0.07);
+  plantsList.loadAll("SVG_Plants", 0.06, 0.06, 0.06);
 
   for (int i = 0; i < value; i++) {
     plantsDraw.add(plantsList.getCreature((int)random(0, plantsList.numCreatures()-1)));
   }
 }
 
-void  clean(){
+void  clean() {
   ampDraw.clear();
   birdDraw.clear();
   insecDraw.clear();
@@ -278,10 +289,14 @@ void  clean(){
 //toogle buttons
 boolean tooggleRotate = true;
 boolean toogleShift = true;
-void rotateCreatures(){
- tooggleRotate = !tooggleRotate;
-}
+boolean tooggleColor = true;
 
-void shiftCreatrues(){
+void rotateC() {
+  tooggleRotate = !tooggleRotate;
+}
+void shiftC() {
   toogleShift =!toogleShift;
+}
+void BlackWhite(){
+  tooggleColor = !tooggleColor;
 }

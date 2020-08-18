@@ -35,7 +35,7 @@ class ParticleNoise {
 
   ArrayList<PVector> historyPoints;
   int maxHistoryPoints = 600;
-  
+
   int skipSteps =3;
 
 
@@ -49,7 +49,7 @@ class ParticleNoise {
     maxforce = _maxforce;
     maxspeed = _maxspeed;
     index = _index;
-    maxHistoryPoints = (int)random(400, 650);
+    maxHistoryPoints = (int)random(400, 600);
 
     historyPoints = new ArrayList<PVector>();
     skipSteps = (int)random(3, 6.04);
@@ -150,14 +150,6 @@ class ParticleNoise {
    * Displays the particle on the canvas
    */
   void display() {   
-    /* --------Color fill-------- */
-    // fill(map(pos.x, width/2 - domeRadius, width/2 + domeRadius, 250, 360), 100, 100);    
-    /* --------White fill-------- */
-    fill(255, 10);
-
-    noStroke();
-    //ellipse(pos.x, pos.y, (int)cp5.getController("strokeWeight").getValue()*2, (int)cp5.getController("strokeWeight").getValue()*2);
-
 
     int incStep = (int)cp5.getController("stepCounter").getValue();
     if ( incStep != 0) {
@@ -165,7 +157,11 @@ class ParticleNoise {
         historyPoints.add(new PVector(pos.x, pos.y));
       }
 
-      stroke(240);
+      if (tooggleColor) {
+        stroke(0);
+      } else {
+        stroke(255);
+      }
       strokeWeight((int)cp5.getController("strokeWeight").getValue());
       for (int i = 0; i < historyPoints.size()/4.0 - 1; i++) {
         float x1 = historyPoints.get(i*4).x;
@@ -173,35 +169,21 @@ class ParticleNoise {
 
         float x2 = historyPoints.get(i*4 + 1).x;
         float y2 = historyPoints.get(i*4 + 1).y;
+
         line(x1, y1, x2, y2);
         // stroke(0);
         // line(x, y, (int)cp5.getController("strokeWeight").getValue()*2, (int)cp5.getController("strokeWeight").getValue()*2);
       }
     } else {
-      fill(255);
+      if (tooggleColor) {
+        fill(0);
+      } else {
+        fill(255);
+      }
       noStroke();
       ellipse(pos.x, pos.y, (int)cp5.getController("strokeWeight").getValue()*2, (int)cp5.getController("strokeWeight").getValue()*2);
     }
 
-
-
-
-    /*
-    stroke(0);
-     strokeWeight(5);
-     if (historyPoints.size() >= 2) {
-     for (int i = 0; i < int(historyPoints.size()/5.0) -1; i++) {
-     float x1 = historyPoints.get(i*5).x;
-     float y1 = historyPoints.get(i*5).y;
-     
-     float x2 = historyPoints.get(i*5 + 1).x;
-     float y2 = historyPoints.get(i*5 + 1).y;
-     line(x1, y1, x2, y2);
-     
-     println(i+" "+i%2+" "+(i%2+1));
-     }
-     }
-     */
 
     if (historyPoints.size() >  maxHistoryPoints) {
       historyPoints.clear();

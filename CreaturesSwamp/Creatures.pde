@@ -39,7 +39,7 @@ class Creatures {
     fileName = file;
     println("loading "+fileName);
 
-    animeInc = 0.005;//random(0.0003, 0.01);
+    animeInc = random(0.001, 0.01);
   }
 
   void createCreature() {
@@ -65,15 +65,15 @@ class Creatures {
     println("start pos");
     println(startX+" "+startY);
 
-    randSize = random(0.04, 0.35);
+    randSize = random(0.05, 0.5);
     randTrans = random(-PI, PI);
     rotationDir = random(-1.01, 1.01);
   }
 
   void resetValues() {
-    randSize = random(0.04, 0.35);
+    randSize = random(0.05, 0.5);
     randTrans = random(-PI, PI);
-    animeInc = random(0.0003, 0.01);
+    animeInc = random(0.001, 0.01);
     rotationDir = random(-1.01, 1.01);
   }
 
@@ -107,7 +107,11 @@ class Creatures {
 
 
     noFill();
-    stroke(255);//200-animTime*5);
+    if (tooggleColor) {
+      stroke(0);
+    } else {
+      stroke(255);
+    }
 
     float t = constrain(map(mouseX, 10, width-10, 0, 1), 0, 1);
     float w = constrain(map(mouseY, 10, height-10, 1, 15), 1, 15);
@@ -122,8 +126,8 @@ class Creatures {
      }
      ellipse(center.x, center.y, 10, 10);
      */
-     
-     
+
+
     RPoint center = shp.getCenter();
     translate(center.x, center.y);
 
