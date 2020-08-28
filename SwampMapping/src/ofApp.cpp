@@ -18,7 +18,7 @@ void ofApp::setup()
     testTexture.enableMipmap();
     testTexture.loadData(image.getPixels());
     
-    mClientFbo.allocate(1920, 1080, GL_RGBA);
+    mClientFbo.allocate(1200, 1200, GL_RGBA);
     mClientFbo.begin();
     ofClear(255,255,255,255);
     mClientFbo.end();
@@ -31,7 +31,7 @@ void ofApp::setup()
 		std::shared_ptr<ofxWarpBase> warp; 
 		
 		warp = this->warpController.buildWarp<ofxWarpPerspectiveBilinear>();
-		warp->setSize(1920, 1080);
+		warp->setSize(1200, 1200);
         warp->setEdges(glm::vec4(0.0f, 0.0f, 0.0f, 0.0f));
         warp->setBrightness(1.0);
         warp->setGamma(1.0);
@@ -40,7 +40,7 @@ void ofApp::setup()
     }else{
         for (auto i = 0; i < this->warpController.getNumWarps(); ++i){
             auto warp = this->warpController.getWarp(i);
-            warp->setSize(1920, 1080);
+            warp->setSize(1200, 1200);
         }
     }
     
@@ -73,7 +73,7 @@ void ofApp::draw()
 	ofBackground(ofColor::black);
     
     mClientFbo.begin();
-    mClient.draw(0, 0, 1920, 1080);
+    mClient.draw(0, 0, 1200, 1200);
     mClientFbo.end();
 
     for (auto i = 0; i < this->warpController.getNumWarps(); ++i)
