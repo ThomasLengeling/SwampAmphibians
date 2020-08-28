@@ -82,4 +82,5 @@ class CreaturesManager {
   //update variables
   void update() {
   }
+  
 }

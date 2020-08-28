@@ -36,14 +36,18 @@ boolean   drawGUI = true;
 //toogle timer
 boolean   toogleTimer = true;
 
-int maxCreatrues = 200;
+int maxCreatrues = 100;
 
 //send frame for mapping
 SyphonServer server;
 
+//bacground clas
+Bkg bkg;
+
 void setup() {
-  //fullScreen(P3D);
-  size(1920, 1080, P3D);
+//fullScreen(P3D);
+  size(1200, 1200, P3D);
+ //  size(3840, 2160, P3D);
   smooth(16);
 
   RG.init(this);
@@ -51,19 +55,19 @@ void setup() {
 
   //amphibians
   ampList = new CreaturesManager();
-  ampList.loadAll("SVG_Amphibians", 0.9, 0.9, 0.9);
+  ampList.loadAll("SVG_Amphibians", 0.052, 0.052, 0.052);
 
   birdList = new CreaturesManager();
-  birdList.loadAll("SVG_Birds", 0.17, 0.17, 0.17);
+  birdList.loadAll("SVG_Birds", 0.052, 0.052, 0.052);
 
   insecList = new CreaturesManager();
-  insecList.loadAll("SVG_Insects", 0.17, 0.17, 0.17);
+  insecList.loadAll("SVG_Insects", 0.04, 0.04, 0.04);
 
   mammalsList = new CreaturesManager();
-  mammalsList.loadAll("SVG_Mammals", 0.17, 0.17, 0.17);
+  mammalsList.loadAll("SVG_Mammals", 0.052, 0.052, 0.052);
 
   plantsList = new CreaturesManager();
-  plantsList.loadAll("SVG_Plants", 0.17, 0.17, 0.17);
+  plantsList.loadAll("SVG_Plants", 0.04, 0.04, 0.04);
 
   numAmp = ampList.numCreatures();
   numBird = birdList.numCreatures();
@@ -95,17 +99,21 @@ void setup() {
   cp5.getController("NumInsec").setValue(creatures[0][2]);
   cp5.getController("NumMammals").setValue(creatures[0][3]);
   cp5.getController("NumPlants").setValue(creatures[0][4]);
+  
+  bkg = new Bkg(3);
 }
 
 //Main draw
 void draw() {
+  
+  bkg.update();
 
   noStroke();
   int alpha = (int)cp5.getController("alpha").getValue();
   if (tooggleColor) {
-    fill(255, alpha);
+    fill(255, bkg.alpha);
   } else {
-    fill(0, alpha);
+    fill(0, bkg.alpha);
   }
   rect(0, 0, width, height);
 
@@ -155,6 +163,9 @@ void draw() {
 
   //send screen
   server.sendScreen();
+  
+  //fill(255);
+  //text(""+frameRate, 350, 50);
 }
 
 
@@ -167,6 +178,7 @@ void keyPressed() {
       background(0);
     }
   }
+  
   if (key == 'm') {
     drawMap = !drawMap;
   }
@@ -175,6 +187,7 @@ void keyPressed() {
     ampListInc++;
     println(ampListInc);
   }
+  
   if (key == '1') {
     cp5.getController("NumAmp").setValue(creatures[0][0] + (int)random(2.01));
     cp5.getController("NumBird").setValue(creatures[0][1]+ (int)random(2.01));
@@ -207,4 +220,9 @@ void keyPressed() {
   if (key == 's') {
     saveFrame("output/frames####.png");
   }
+  
+  if(key == 'f'){
+     
+  }
+  
 }

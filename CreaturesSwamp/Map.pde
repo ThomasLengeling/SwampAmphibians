@@ -1,10 +1,8 @@
 /*
-
 */
 class SwampMap {
 
   RShape shp;
-
 
   SwampMap() {
     shp = RG.loadShape("Biotope_Map_REAL-SIZE.svg");

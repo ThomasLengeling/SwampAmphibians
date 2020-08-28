@@ -15,9 +15,9 @@ class Creatures {
   float posX = 0;
   float posY = 0;
 
-  float scX = 0.8;
-  float scY = 0.8;
-  float scZ = 0.8;
+  float scX = 0.05;
+  float scY = 0.05;
+  float scZ = 0.05;
 
   //shape
   float startX = 0;
@@ -34,12 +34,15 @@ class Creatures {
 
   float rotationDir = 0; 
 
+  float lastDir = 0;
+  float lastScale = 0;
+
   //contructor
   Creatures(String file) {
     fileName = file;
     println("loading "+fileName);
 
-    animeInc = random(0.001, 0.01);
+    animeInc = random(0.08, 0.3);
   }
 
   void createCreature() {
@@ -48,7 +51,6 @@ class Creatures {
     shp = RG.centerIn(shp, g);
     /// shp.translate(shp.width/2.0, shp.height/2.0);
     shp.scale(scX, scY, scZ);
-
 
     println("size "+shp.width+" "+shp.height);
     pointPaths = shp.getPointsInPaths();
@@ -65,15 +67,15 @@ class Creatures {
     println("start pos");
     println(startX+" "+startY);
 
-    randSize = random(0.05, 0.5);
+    randSize = random(0.06, 0.8);
     randTrans = random(-PI, PI);
     rotationDir = random(-1.01, 1.01);
   }
 
   void resetValues() {
-    randSize = random(0.05, 0.5);
+    randSize = random(0.06, 0.8);
     randTrans = random(-PI, PI);
-    animeInc = random(0.001, 0.01);
+    animeInc = random(0.08, 0.3);
     rotationDir = random(-1.01, 1.01);
   }
 
@@ -136,23 +138,26 @@ class Creatures {
     if (tooggleRotate) {
       if (randTrans > 0.3) {
         if (dirInc > 0) {
-          rotate(abs(animTime*1.2)*rotationDir);
+          lastDir = abs((animTime)/frameRate)*rotationDir;
+          rotate(lastDir);
         } else {
-          rotate(abs(1.0*1.2)*rotationDir);
+          rotate(lastDir);
         }
       }
     }
 
     if (toogleShift) {
       if (dirInc > 0) {
-        scale(1.0 - abs(animTime*randSize)*rotationDir, 1.0 - abs(animTime*randSize)*rotationDir);
+        lastScale =  abs( ((animTime*randSize)/frameRate)*rotationDir);
+        scale(1.0 - lastScale, 1.0 - lastScale);
       } else {
-        scale(1.0 - abs(1.0*randSize)*rotationDir, 1.0 - abs(1.0*randSize)*rotationDir);
+        scale(1.0 - lastScale, 1.0 - lastScale);
       }
     }
 
-    RShape[] splittedGroups = RG.split(shp, animTime); 
+    RShape[] splittedGroups = RG.split(shp, constrain( (animTime)/frameRate, -1, 1)); 
     splittedGroups[0].draw();
+
 
     popMatrix();
   }
@@ -181,15 +186,16 @@ class Creatures {
       animTime  += animeInc * dirInc;
     }
 
-    if (animTime >= 1.0) {
-      animTime = 1.0;
+    if (animTime >= 1.0*frameRate) {
+      animTime = 1.0 *frameRate;
       dirInc *= -1;
     }
 
-    if (animTime <= 0.0) {
+    if (animTime <= 0) {
       lockAnim = true;
       animTime = 0.0;
       dirInc *= -1;
     }
   }
+  
 }

@@ -6,54 +6,55 @@ class ParticleNoise {
   PVector pos;
   PVector vel;
   PVector acc;
-  float size;
-  float maxforce;   
-  float maxspeed;
-  float angle;
-  float angleIncrement;
+  float   size;
+  float   maxforce;   
+  float   maxspeed;
+  float   angle;
+  float   angleIncrement;
 
   Boolean flowing = true;
 
   Boolean stopped = false;
   Boolean start = false;
 
-  float distanceFromCenter = 0;
-  int trembleTime = 0;
-  int index;
+  float   distanceFromCenter = 0;
+  int     trembleTime = 0;
+  int     index;
 
   PVector previous = new PVector();
-  float radius = random(50, 200);
-  float dec = (200 - radius) * 0.000014;
+  float   radius   = random(50, 200);
+  float   dec      = (200 - radius) * 0.000014;
+  
   //float tilt = random(-60,60);
-  float turnVelocity;
+  float   turnVelocity;
 
-  float noiseOndulation = 200;
-  float noiseVariation = 1000;
-  float noiseInterval = 250;
-  float noiseResistance = 1000;
-  float domeRadius = 450;
+  float   noiseOndulation = 200;
+  float   noiseVariation  = 1000;
+  float   noiseInterval   = 250;
+  float   noiseResistance = 1000;
+  float   domeRadius      = 450;
 
-  ArrayList<PVector> historyPoints;
+  ArrayList<PVector>   historyPoints;
+  
   int maxHistoryPoints = 600;
-
-  int skipSteps =3;
-
+  
+  int skipSteps        = 3;
 
   ParticleNoise (float _x, float _y, float _maxspeed, float _maxforce, int _index) {
     pos = new PVector(_x, _y);
     vel = new PVector(0, 0);
     acc = new PVector(0, 0);
-    size = 4;
-    angle = 0;
+    size   =  4;
+    angle  =  0;
     angleIncrement = random(0.005, 0.05);
     maxforce = _maxforce;
     maxspeed = _maxspeed;
-    index = _index;
-    maxHistoryPoints = (int)random(400, 600);
-
+    index    = _index;
+   // maxHistoryPoints = (int)random(350, 500);
+ maxHistoryPoints = (int)random(300, 450);
     historyPoints = new ArrayList<PVector>();
-    skipSteps = (int)random(3, 6.04);
-  }
+    skipSteps     = (int)random(4, 6.04);
+  }  
 
   /**
    * Calculates the noise angle in a given position

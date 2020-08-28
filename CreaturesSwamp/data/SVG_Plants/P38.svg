@@ -1,21 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Creator: CorelDRAW X8 -->
-<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="500px" height="500px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
-viewBox="0 0 500 500"
- xmlns:xlink="http://www.w3.org/1999/xlink">
- <defs>
-  <style type="text/css">
-   <![CDATA[
-    .str0 {stroke:black;stroke-width:1.00006}
-    .fil0 {fill:none;fill-rule:nonzero}
-   ]]>
-  </style>
- </defs>
- <g id="Layer_x0020_1">
-  <metadata id="CorelCorpID_0Corel-Layer"/>
-  <path class="fil0 str0" d="M255 145c-3,5 -7,9 -11,14 -18,20 -24,48 -23,75 0,27 5,54 8,81 0,7 1,13 2,20 1,12 4,23 10,33 3,-2 4,-6 4,-10 5,-51 24,-99 35,-149 5,-19 21,-101 -18,-96 -2,11 -1,22 -7,32z"/>
-  <path class="fil0 str0" d="M249 269c1,-8 1,-17 3,-25 2,-7 5,-14 5,-21 0,-2 0,-5 -1,-7 -2,-2 -5,-3 -7,-1 -1,1 -2,2 -2,4 -3,12 -6,24 -6,36 -1,9 0,17 1,26 0,9 3,19 1,27 3,-13 5,-26 6,-39z"/>
-  <path class="fil0 str0" d="M245 225c2,-4 -2,-8 -5,-10 -4,-1 -8,0 -12,0 -3,30 0,60 7,88 1,2 2,4 3,6 2,1 5,1 7,0"/>
- </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="-55 147 500 500" style="enable-background:new -55 147 500 500;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#000000;stroke-width:1.0001;}
+</style>
+<g id="Layer_x0020_1">
+	<path class="st0" d="M200,292c-3,5-7,9-11,14c-18,20-24,48-23,75c0,27,5,54,8,81c0,7,1,13,2,20c1,12,4,23,10,33c3-2,4-6,4-10
+		c5-51,24-99,35-149c5-19,21-101-18-96C205,271,206,282,200,292z"/>
+	<path class="st0" d="M194,416c1-8,1-17,3-25c2-7,5-14,5-21c0-2,0-4.9-1-6.9c0-0.1-5.1-3.1-7-1.1c-1,1,0,3.9-2,3.9
+		c-1.8,0-7,80-4.4,86.1c0.2,0.6,0.9,0.7,1.1,0.1C191.3,440.1,193.1,428,194,416z"/>
+	<path class="st0" d="M190,372c1.6-1.5-1.7-7.5-4.7-9.8c-0.2-0.2-0.5-0.3-0.7-0.3c-3.3-0.7-6.6-0.1-9.9,0c-1,0.1-1.8,0.8-1.8,1.8
+		c-2.7,29.4,0.3,58.8,7.2,86.3l3,6c2,1,5,1,7,0"/>
+</g>
 </svg>

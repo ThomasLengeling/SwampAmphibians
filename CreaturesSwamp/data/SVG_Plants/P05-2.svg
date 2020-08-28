@@ -8,74 +8,74 @@ viewBox="0 0 500 500"
   <style type="text/css">
    <![CDATA[
     .str0 {stroke:black;stroke-width:1.00006}
-    .fil0 {fill:none;fill-rule:nonzero}
+    .fil0 {fill:none}
    ]]>
   </style>
  </defs>
  <g id="Layer_x0020_1">
   <metadata id="CorelCorpID_0Corel-Layer"/>
-  <path class="fil0 str0" d="M189 179c1,11 8,21 19,26"/>
-  <path class="fil0 str0" d="M202 166c-4,11 0,25 10,32"/>
-  <path class="fil0 str0" d="M217 165c-4,10 -3,22 4,31"/>
-  <path class="fil0 str0" d="M175 199c7,11 19,18 32,20"/>
-  <path class="fil0 str0" d="M178 222c-1,0 -1,-1 -2,-1 12,7 26,9 39,6"/>
-  <path class="fil0 str0" d="M182 241c10,4 23,2 32,-4"/>
-  <path class="fil0 str0" d="M215 253c-9,9 -22,15 -36,15"/>
-  <path class="fil0 str0" d="M226 255c-4,10 -12,18 -23,21"/>
-  <path class="fil0 str0" d="M222 246c7,-11 20,-18 32,-17"/>
-  <path class="fil0 str0" d="M233 253c0,-1 0,-2 0,-3 12,2 23,12 25,24"/>
-  <path class="fil0 str0" d="M228 269c5,7 4,17 -2,23"/>
-  <path class="fil0 str0" d="M252 240c7,2 14,7 18,13 4,6 5,14 4,21"/>
-  <path class="fil0 str0" d="M231 225c4,-7 11,-12 19,-14 7,-1 16,1 22,6"/>
-  <path class="fil0 str0" d="M222 219c6,-14 21,-22 35,-20"/>
-  <path class="fil0 str0" d="M235 165c-6,8 -8,20 -4,30"/>
-  <path class="fil0 str0" d="M243 188c8,-10 23,-15 36,-11"/>
-  <path class="fil0 str0" d="M219 206c-1,3 -2,7 -2,11"/>
-  <path class="fil0 str0" d="M273 232c10,-5 18,-14 22,-24"/>
-  <path class="fil0 str0" d="M280 216c4,-9 6,-19 4,-28"/>
-  <path class="fil0 str0" d="M265 197c5,-14 19,-24 34,-25"/>
-  <path class="fil0 str0" d="M270 152c-6,7 -11,15 -13,23"/>
-  <path class="fil0 str0" d="M247 149c-4,9 -6,20 -4,31"/>
-  <path class="fil0 str0" d="M227 146c-3,9 -4,18 -5,26"/>
-  <path class="fil0 str0" d="M213 147c-4,8 -5,19 -3,28"/>
-  <path class="fil0 str0" d="M187 156c0,0 -1,-1 -1,-1 3,7 6,14 8,20"/>
-  <path class="fil0 str0" d="M170 178c5,8 11,16 16,24"/>
-  <line class="fil0 str0" x1="157" y1="202" x2="179" y2= "215" />
-  <path class="fil0 str0" d="M158 231c9,0 19,2 27,5"/>
-  <path class="fil0 str0" d="M163 257c11,-1 22,-2 33,-3"/>
-  <path class="fil0 str0" d="M197 272c-3,1 -5,4 -7,6 -5,8 -9,16 -13,25"/>
-  <path class="fil0 str0" d="M209 283c0,-1 -1,-2 -2,-1 -1,0 -2,1 -3,2 -3,7 -5,15 -6,23"/>
-  <path class="fil0 str0" d="M239 274c1,-1 1,-1 1,-2 3,10 3,20 0,30"/>
-  <path class="fil0 str0" d="M264 258c-1,5 0,11 1,17"/>
-  <path class="fil0 str0" d="M285 244c4,13 4,26 1,38"/>
-  <path class="fil0 str0" d="M297 235c-1,-1 0,-2 0,-2 5,11 5,24 1,36"/>
-  <path class="fil0 str0" d="M305 226c6,-6 15,-9 23,-7"/>
-  <path class="fil0 str0" d="M307 248c6,-7 17,-9 25,-4"/>
-  <path class="fil0 str0" d="M309 273c0,-1 0,-1 0,-1 1,9 0,18 -4,25"/>
-  <path class="fil0 str0" d="M274 285c1,10 2,19 1,28"/>
-  <path class="fil0 str0" d="M258 289c-2,9 -5,19 -7,29"/>
-  <path class="fil0 str0" d="M226 298c-4,3 -7,9 -7,14"/>
-  <path class="fil0 str0" d="M216 290c-5,6 -8,13 -8,20"/>
-  <path class="fil0 str0" d="M182 275c-1,-1 -3,-2 -4,-1 -2,0 -3,1 -4,3 -5,5 -9,12 -11,19"/>
-  <path class="fil0 str0" d="M179 244c-12,0 -24,3 -34,10"/>
-  <path class="fil0 str0" d="M163 221c-6,-4 -13,-3 -19,1"/>
-  <path class="fil0 str0" d="M152 173c3,8 8,14 15,18"/>
-  <path class="fil0 str0" d="M172 152c3,11 7,21 13,31"/>
-  <path class="fil0 str0" d="M197 137c-1,7 0,15 2,22"/>
-  <path class="fil0 str0" d="M241 131c-6,9 -8,20 -6,30"/>
-  <path class="fil0 str0" d="M260 139c-5,8 -8,18 -8,28"/>
-  <path class="fil0 str0" d="M294 149c-10,5 -18,14 -21,24"/>
-  <path class="fil0 str0" d="M316 172c0,-2 -2,-3 -3,-2 -1,0 -2,1 -3,2 -6,8 -11,17 -14,27"/>
-  <path class="fil0 str0" d="M328 190c-2,-1 -4,-1 -5,0 -2,0 -3,2 -4,3 -6,7 -11,16 -14,24"/>
-  <path class="fil0 str0" d="M310 234c1,-2 3,-3 5,-3 11,-1 23,1 33,6"/>
-  <path class="fil0 str0" d="M317 258c8,6 13,15 14,25"/>
-  <path class="fil0 str0" d="M316 283c-1,9 -2,18 -3,26"/>
-  <path class="fil0 str0" d="M287 291c0,9 -1,18 -1,27"/>
-  <path class="fil0 str0" d="M169 267c0,-1 -1,-2 -3,-2 -1,0 -2,1 -4,2 -10,7 -19,18 -23,31"/>
-  <path class="fil0 str0" d="M187 292c-3,13 -2,26 2,38"/>
-  <path class="fil0 str0" d="M231 310c-2,10 2,21 11,27"/>
-  <path class="fil0 str0" d="M259 308c-1,5 -1,10 2,14 2,5 6,8 11,9"/>
-  <path class="fil0 str0" d="M298 307c1,9 -2,18 -8,23"/>
-  <path class="fil0 str0" d="M152 261c-7,2 -13,8 -14,15"/>
+  <path class="fil0 str0" d="M176 160c1,14 11,27 25,34"/>
+  <path class="fil0 str0" d="M193 143c-5,14 0,33 13,42"/>
+  <path class="fil0 str0" d="M213 141c-5,13 -4,29 5,41"/>
+  <path class="fil0 str0" d="M158 186c9,15 25,24 42,26"/>
+  <path class="fil0 str0" d="M159 215c16,9 34,12 51,8"/>
+  <path class="fil0 str0" d="M167 241c13,6 30,3 42,-5"/>
+  <path class="fil0 str0" d="M210 257c-11,12 -29,20 -47,20"/>
+  <path class="fil0 str0" d="M225 260c-5,13 -16,24 -30,28"/>
+  <path class="fil0 str0" d="M220 248c9,-15 26,-24 42,-22"/>
+  <path class="fil0 str0" d="M234 253c16,3 30,16 33,32"/>
+  <path class="fil0 str0" d="M228 278c6,10 5,23 -3,31"/>
+  <path class="fil0 str0" d="M259 240c9,3 19,9 24,17 5,8 6,19 5,28"/>
+  <path class="fil0 str0" d="M231 220c6,-9 15,-16 26,-18 9,-1 21,1 29,8"/>
+  <path class="fil0 str0" d="M220 212c8,-18 27,-29 46,-26"/>
+  <path class="fil0 str0" d="M237 141c-8,11 -11,27 -6,40"/>
+  <path class="fil0 str0" d="M247 172c11,-14 31,-20 48,-15"/>
+  <path class="fil0 str0" d="M216 195c-2,4 -3,9 -3,15"/>
+  <path class="fil0 str0" d="M287 230c13,-7 24,-19 29,-32"/>
+  <path class="fil0 str0" d="M296 208c5,-11 8,-25 5,-36"/>
+  <path class="fil0 str0" d="M276 183c7,-18 25,-31 45,-33"/>
+  <path class="fil0 str0" d="M283 124c-8,9 -15,20 -17,30"/>
+  <path class="fil0 str0" d="M253 120c-6,12 -8,27 -6,41"/>
+  <path class="fil0 str0" d="M226 116c-4,12 -5,24 -6,34"/>
+  <path class="fil0 str0" d="M208 118c-5,10 -7,25 -4,36"/>
+  <path class="fil0 str0" d="M172 128c0,0 11,26 11,26"/>
+  <path class="fil0 str0" d="M151 158c6,12 14,25 21,32"/>
+  <path class="fil0 str0" d="M135 191c10,4 22,11 28,17"/>
+  <path class="fil0 str0" d="M135 228c12,0 25,3 36,7"/>
+  <path class="fil0 str0" d="M142 262c14,-1 29,-2 43,-3"/>
+  <path class="fil0 str0" d="M187 282c-4,2 -7,6 -10,8 -6,11 -11,21 -17,33"/>
+  <path class="fil0 str0" d="M203 297c0,-2 -2,-3 -3,-2 -1,0 -3,2 -4,3 -4,9 -7,20 -8,30"/>
+  <path class="fil0 str0" d="M243 282c4,13 4,27 0,40"/>
+  <path class="fil0 str0" d="M275 264c-1,6 0,14 1,22"/>
+  <path class="fil0 str0" d="M303 245c5,17 5,35 1,50"/>
+  <path class="fil0 str0" d="M318 231c7,14 7,31 2,47"/>
+  <path class="fil0 str0" d="M329 222c8,-8 20,-12 30,-10"/>
+  <path class="fil0 str0" d="M332 251c8,-10 22,-12 33,-6"/>
+  <path class="fil0 str0" d="M334 282c2,12 0,24 -5,33"/>
+  <path class="fil0 str0" d="M288 299c1,14 3,25 1,37"/>
+  <path class="fil0 str0" d="M267 305c-1,11 -9,35 -9,38"/>
+  <path class="fil0 str0" d="M225 316c-5,4 -9,12 -9,19"/>
+  <path class="fil0 str0" d="M212 306c-7,8 -11,17 -11,26"/>
+  <path class="fil0 str0" d="M167 286c-1,-1 -4,-2 -5,-1 -3,0 -4,1 -6,4 -6,6 -11,16 -14,25"/>
+  <path class="fil0 str0" d="M163 245c-16,0 -32,4 -45,14"/>
+  <path class="fil0 str0" d="M142 215c-8,-5 -17,-4 -25,1"/>
+  <path class="fil0 str0" d="M127 152c4,10 11,18 20,24"/>
+  <path class="fil0 str0" d="M154 124c4,15 9,28 17,41"/>
+  <path class="fil0 str0" d="M187 104c-2,10 0,20 2,29"/>
+  <path class="fil0 str0" d="M245 96c-8,12 -11,27 -8,40"/>
+  <path class="fil0 str0" d="M270 107c-7,11 -11,24 -11,37"/>
+  <path class="fil0 str0" d="M315 120c-14,7 -24,19 -28,32"/>
+  <path class="fil0 str0" d="M343 150c0,-1 -3,-1 -5,-1 -1,1 -2,1 -3,3 -8,10 -14,21 -18,34"/>
+  <path class="fil0 str0" d="M359 174c-2,-1 -9,2 -11,4 0,0 -1,0 -1,0 -8,10 -14,21 -18,32"/>
+  <path class="fil0 str0" d="M336 232c-1,-2 36,-2 50,4"/>
+  <path class="fil0 str0" d="M345 264c10,8 17,20 18,33"/>
+  <path class="fil0 str0" d="M343 297c-1,12 -2,23 -3,34"/>
+  <path class="fil0 str0" d="M305 307c0,12 -1,24 -1,36"/>
+  <path class="fil0 str0" d="M150 276c0,-2 -2,-3 -4,-3 -1,0 -3,1 -5,3 -14,9 -25,23 -31,40"/>
+  <path class="fil0 str0" d="M174 309c-4,17 -3,34 2,50"/>
+  <path class="fil0 str0" d="M231 332c-2,13 3,28 15,36"/>
+  <path class="fil0 str0" d="M268 330c-1,6 -1,13 3,18 3,7 8,11 15,12"/>
+  <path class="fil0 str0" d="M320 328c1,12 -3,24 -11,31"/>
+  <path class="fil0 str0" d="M127 268c-9,2 -17,10 -18,20"/>
  </g>
 </svg>
