@@ -22,7 +22,7 @@ int numInsc;
 int numMammals;
 int numPlants;
 
-SwampMap         swampMap;
+SwampMap           swampMap;
 
 CreaturesParticle  creatureParticle;
 
@@ -36,7 +36,7 @@ boolean   drawGUI = true;
 //toogle timer
 boolean   toogleTimer = true;
 
-int maxCreatrues = 100;
+int maxCreatrues = 200;
 
 //send frame for mapping
 SyphonServer server;
@@ -45,10 +45,10 @@ SyphonServer server;
 Bkg bkg;
 
 void setup() {
-//fullScreen(P3D);
   size(1200, 1200, P3D);
- //  size(3840, 2160, P3D);
   smooth(16);
+  
+  frameRate(30);
 
   RG.init(this);
   RG.ignoreStyles(ignoringStyles);
@@ -89,8 +89,8 @@ void setup() {
   //create GUI
   setupGui();
 
-  // randomSeed(0);
-  // noiseSeed(0);
+  randomSeed(0);
+  noiseSeed(0);
 
   server = new SyphonServer(this, "Swamp");
 
@@ -99,13 +99,13 @@ void setup() {
   cp5.getController("NumInsec").setValue(creatures[0][2]);
   cp5.getController("NumMammals").setValue(creatures[0][3]);
   cp5.getController("NumPlants").setValue(creatures[0][4]);
-  
+
   bkg = new Bkg(3);
 }
 
 //Main draw
 void draw() {
-  
+
   bkg.update();
 
   noStroke();
@@ -149,6 +149,13 @@ void draw() {
   if (maxC > maxCreatrues) {
     clean();
     sliderCount.setValue(0);
+
+    //add acouple of creatures when cleaned
+    cp5.getController("NumAmp").setValue(creatures[0][0] );
+    cp5.getController("NumBird").setValue(creatures[0][1] );
+    cp5.getController("NumInsec").setValue(creatures[0][2] );
+    cp5.getController("NumMammals").setValue(creatures[0][3] );
+    cp5.getController("NumPlants").setValue(creatures[0][4] );
   }
 
   if (!drawIndividuals) {
@@ -163,7 +170,7 @@ void draw() {
 
   //send screen
   server.sendScreen();
-  
+
   //fill(255);
   //text(""+frameRate, 350, 50);
 }
@@ -178,7 +185,7 @@ void keyPressed() {
       background(0);
     }
   }
-  
+
   if (key == 'm') {
     drawMap = !drawMap;
   }
@@ -187,7 +194,7 @@ void keyPressed() {
     ampListInc++;
     println(ampListInc);
   }
-  
+
   if (key == '1') {
     cp5.getController("NumAmp").setValue(creatures[0][0] + (int)random(2.01));
     cp5.getController("NumBird").setValue(creatures[0][1]+ (int)random(2.01));
@@ -220,9 +227,7 @@ void keyPressed() {
   if (key == 's') {
     saveFrame("output/frames####.png");
   }
-  
-  if(key == 'f'){
-     
+
+  if (key == 'f') {
   }
-  
 }

@@ -16,6 +16,11 @@ class CreaturesManager {
     creaArray.add(amp);
   }
 
+  void pop_back() {
+    int index = creaArray.size() - 1; 
+    creaArray.remove(index);
+  }
+
   void add(CreaturesParticle amp ) {
     creaArray.add(amp);
   }
@@ -23,8 +28,8 @@ class CreaturesManager {
   int numCreatures() {
     return creaArray.size();
   }
-  
-  void clear(){
+
+  void clear() {
     creaArray.clear();
   }
 
@@ -40,7 +45,7 @@ class CreaturesManager {
     int i = 0;
     for (String fileNames : filenames ) {
       CreaturesParticle amp = new CreaturesParticle(fileName+"/"+fileNames);
-
+      amp.creature.creatureName = fileName;
       amp.creature.setScale(sx, sy, sz);
       amp.creature.createCreature();
 
@@ -82,5 +87,4 @@ class CreaturesManager {
   //update variables
   void update() {
   }
-  
 }

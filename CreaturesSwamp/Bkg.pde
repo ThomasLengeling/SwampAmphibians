@@ -2,6 +2,7 @@ class Bkg {
 
   float alphaLimit;
   float alpha  = 255;
+  float dir    = -1;
   float inc;
 
   boolean activate;
@@ -15,7 +16,7 @@ class Bkg {
   void update() {
     if (activate) {
       if (alpha > alphaLimit) {
-        alpha -= inc;
+        alpha = inc * dir;
         //println(alpha);
       } else {
         alpha = alphaLimit;

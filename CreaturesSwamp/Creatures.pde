@@ -2,6 +2,7 @@ class Creatures {
 
   RShape shp;
   String fileName;
+  String creatureName;
   String idName;
   int id;
 
@@ -42,7 +43,7 @@ class Creatures {
     fileName = file;
     println("loading "+fileName);
 
-    animeInc = random(0.08, 0.3);
+    animeInc = random(0.08, 0.1);
   }
 
   void createCreature() {
@@ -72,10 +73,41 @@ class Creatures {
     rotationDir = random(-1.01, 1.01);
   }
 
+  void getNewCreature() {
+
+    String path = dataPath("")+"/"+creatureName+"/";
+    String[] filenames = listFileNames(path);
+    fileName =    path+"/"+filenames[(int)random(0, filenames.length-1)];
+    
+    shp = RG.loadShape(fileName);
+    shp = RG.centerIn(shp, g);
+    /// shp.translate(shp.width/2.0, shp.height/2.0);
+    shp.scale(scX, scY, scZ);
+
+    println("size "+shp.width+" "+shp.height);
+    pointPaths = shp.getPointsInPaths();
+
+    int endI = pointPaths.length -1;
+    int endJ = pointPaths[endI].length - 1;
+
+    startX = pointPaths[0][0].x;
+    startY = pointPaths[0][0].y;
+
+    endX  = pointPaths[endI][endJ].x;
+    endY  = pointPaths[endI][endJ].y;
+
+    println("start pos");
+    println(startX+" "+startY);
+
+    randSize = random(0.06, 0.8);
+    randTrans = random(-PI, PI);
+    rotationDir = random(-1.01, 1.01);
+  }
+
   void resetValues() {
     randSize = random(0.06, 0.8);
     randTrans = random(-PI, PI);
-    animeInc = random(0.08, 0.3);
+    animeInc = random(0.08, 0.1);
     rotationDir = random(-1.01, 1.01);
   }
 
@@ -197,5 +229,4 @@ class Creatures {
       dirInc *= -1;
     }
   }
-  
 }

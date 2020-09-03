@@ -1,6 +1,6 @@
 /*
   Creature with a particle
-*/
+ */
 class CreaturesParticle {
   ParticleNoise    particle; 
   Creatures        creature;
@@ -20,11 +20,11 @@ class CreaturesParticle {
 
     //create creature
     creature         = new Creatures(name);
-    
+
     creationTime     = 0.0;
     creationInc      = random(0.03, 0.07);
   }
- 
+
 
   void updateParticle() {
     if (particle.flowing) {
@@ -42,6 +42,9 @@ class CreaturesParticle {
         drawCreature = false;
         particle.historyPoints.clear();
         creature.resetValues();
+
+        //get a new SVG creates.
+        if (random(1)> 0.7)creature.getNewCreature();
       }
     } else {
       updateParticle();

@@ -39,6 +39,7 @@ class ParticleNoise {
   int maxHistoryPoints = 600;
   
   int skipSteps        = 3;
+  int incStep = 1;
 
   ParticleNoise (float _x, float _y, float _maxspeed, float _maxforce, int _index) {
     pos = new PVector(_x, _y);
@@ -54,6 +55,8 @@ class ParticleNoise {
  maxHistoryPoints = (int)random(300, 450);
     historyPoints = new ArrayList<PVector>();
     skipSteps     = (int)random(4, 6.04);
+    
+    incStep = (random(1) > 0.10) ? 1 :0;
   }  
 
   /**
@@ -152,7 +155,7 @@ class ParticleNoise {
    */
   void display() {   
 
-    int incStep = (int)cp5.getController("stepCounter").getValue();
+    //int incStep = (int)cp5.getController("stepCounter").getValue();
     if ( incStep != 0) {
       if ( frameCount % skipSteps == 0) { // incStep
         historyPoints.add(new PVector(pos.x, pos.y));
