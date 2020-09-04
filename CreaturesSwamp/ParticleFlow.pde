@@ -24,7 +24,7 @@ class ParticleNoise {
   PVector previous = new PVector();
   float   radius   = random(50, 200);
   float   dec      = (200 - radius) * 0.000014;
-  
+
   //float tilt = random(-60,60);
   float   turnVelocity;
 
@@ -35,9 +35,9 @@ class ParticleNoise {
   float   domeRadius      = 450;
 
   ArrayList<PVector>   historyPoints;
-  
+
   int maxHistoryPoints = 600;
-  
+
   int skipSteps        = 3;
   int incStep = 1;
 
@@ -51,11 +51,11 @@ class ParticleNoise {
     maxforce = _maxforce;
     maxspeed = _maxspeed;
     index    = _index;
-   // maxHistoryPoints = (int)random(350, 500);
- maxHistoryPoints = (int)random(300, 450);
+    // maxHistoryPoints = (int)random(350, 500);
+    maxHistoryPoints = (int)random(300, 450);
     historyPoints = new ArrayList<PVector>();
-    skipSteps     = (int)random(4, 6.04);
-    
+    skipSteps     = (int)random(4, 5.04);
+
     incStep = (random(1) > 0.10) ? 1 :0;
   }  
 

@@ -89,8 +89,8 @@ void setup() {
   //create GUI
   setupGui();
 
-  randomSeed(0);
-  noiseSeed(0);
+ // randomSeed(0);
+ // noiseSeed(0);
 
   server = new SyphonServer(this, "Swamp");
 

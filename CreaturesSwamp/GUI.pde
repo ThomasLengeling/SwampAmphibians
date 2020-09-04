@@ -74,7 +74,7 @@ void setupGui() {
 
   cp5.addSlider("alpha")
     .setPosition(20, 150)
-    .setValue(5.0)
+    .setValue(2.0)
     .setRange(0, 50)
     .setDecimalPrecision(1)
     .setGroup(g1)
@@ -108,7 +108,7 @@ void setupGui() {
     .setPosition(180, 30)
     .setDecimalPrecision(0)
     .setRange(0, 59)
-    .setValue(55)
+    .setValue(40)
     .setGroup(g1)
     ;
 
@@ -243,13 +243,27 @@ void updateGUI() {
         int currId = (int)sliderCount.getValue();
         println("value "+sliderCount.getValue());
 
-        cp5.getController("NumAmp").setValue(creatures[currId][0] );
-        cp5.getController("NumBird").setValue(creatures[currId][1] );
-        cp5.getController("NumInsec").setValue(creatures[currId][2] );
-        cp5.getController("NumMammals").setValue(creatures[currId][3] );
-        cp5.getController("NumPlants").setValue(creatures[currId][4] );
-        sliderCount.setValue(sliderCount.getValue() + 1);
+        for (int i = 0; i < creatures[currId][0]; i++) {
+          ampDraw.add( ampList.getCreature((int)random(0, ampList.numCreatures()-1)));
+        }
 
+        for (int i = 0; i < creatures[currId][1]; i++) {
+          birdDraw.add( birdList.getCreature((int)random(0, birdList.numCreatures()-1)));
+        }
+
+        for (int i = 0; i < creatures[currId][2]; i++) {
+          insecDraw.add( insecList.getCreature((int)random(0, insecList.numCreatures()-1)));
+        }
+
+        for (int i = 0; i < creatures[currId][3]; i++) {
+          mammalsDraw.add( mammalsList.getCreature((int)random(0, mammalsList.numCreatures()-1)));
+        }
+
+        for (int i = 0; i < creatures[currId][4]; i++) {
+          plantsDraw.add( plantsList.getCreature((int)random(0, plantsList.numCreatures()-1)));
+        }
+
+        sliderCount.setValue(sliderCount.getValue() + 1);
 
         //clean bkg
         if (currId == 8) {
