@@ -108,7 +108,7 @@ void setupGui() {
     .setPosition(180, 30)
     .setDecimalPrecision(0)
     .setRange(0, 59)
-    .setValue(5)
+    .setValue(50)
     .setGroup(g1)
     ;
 
