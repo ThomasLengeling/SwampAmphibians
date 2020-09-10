@@ -40,6 +40,7 @@ class ParticleNoise {
 
   int skipSteps        = 3;
   int incStep = 1;
+  int randomSkip = 1;
 
   ParticleNoise (float _x, float _y, float _maxspeed, float _maxforce, int _index) {
     pos = new PVector(_x, _y);
@@ -54,9 +55,10 @@ class ParticleNoise {
     // maxHistoryPoints = (int)random(350, 500);
     maxHistoryPoints = (int)random(300, 450);
     historyPoints = new ArrayList<PVector>();
-    skipSteps     = (int)random(4, 5.04);
+    skipSteps     = (int)random(3, 10.01);
 
     incStep = (random(1) > 0.10) ? 1 :0;
+    randomSkip = (random(1) > 0.90) ? 1 :0;
   }  
 
   /**
@@ -166,6 +168,9 @@ class ParticleNoise {
       } else {
         stroke(255);
       }
+       if(randomSkip == 1){
+        skipSteps     = (int)random(3, 6); 
+       }
       strokeWeight((int)cp5.getController("strokeWeight").getValue());
       for (int i = 0; i < historyPoints.size()/4.0 - 1; i++) {
         float x1 = historyPoints.get(i*4).x;
@@ -178,6 +183,7 @@ class ParticleNoise {
         // stroke(0);
         // line(x, y, (int)cp5.getController("strokeWeight").getValue()*2, (int)cp5.getController("strokeWeight").getValue()*2);
       }
+      
     } else {
       if (tooggleColor) {
         fill(0);

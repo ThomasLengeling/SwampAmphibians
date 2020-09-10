@@ -43,7 +43,7 @@ class Creatures {
     fileName = file;
     println("loading "+fileName);
 
-    animeInc = random(0.08, 0.1);
+    animeInc = random(0.02, 0.1);
   }
 
   void createCreature() {
@@ -107,7 +107,7 @@ class Creatures {
   void resetValues() {
     randSize = random(0.06, 0.8);
     randTrans = random(-PI, PI);
-    animeInc = random(0.08, 0.1);
+    animeInc = random(0.02, 0.1);
     rotationDir = random(-1.01, 1.01);
   }
 

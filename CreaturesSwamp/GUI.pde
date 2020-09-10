@@ -74,7 +74,7 @@ void setupGui() {
 
   cp5.addSlider("alpha")
     .setPosition(20, 150)
-    .setValue(2.0)
+    .setValue(1.0)
     .setRange(0, 50)
     .setDecimalPrecision(1)
     .setGroup(g1)
@@ -108,7 +108,7 @@ void setupGui() {
     .setPosition(180, 30)
     .setDecimalPrecision(0)
     .setRange(0, 59)
-    .setValue(40)
+    .setValue(5)
     .setGroup(g1)
     ;
 
@@ -127,8 +127,6 @@ void setupGui() {
     .setRange(0, 10) // values can range from big to small as well
     .setValue(0)
     .setGroup(g1);
-
-
 
   cp5.addToggle("rotateC")
     .setPosition(200, 210)
@@ -203,8 +201,6 @@ void setupGui() {
    .setGroup(g1);
    */
 
-
-
   //controllTimer
   controlTimer = new ControlTimer();
   textTimer = cp5.addTextlabel("--")
@@ -244,23 +240,23 @@ void updateGUI() {
         println("value "+sliderCount.getValue());
 
         for (int i = 0; i < creatures[currId][0]; i++) {
-          ampDraw.add( ampList.getCreature((int)random(0, ampList.numCreatures()-1)));
+          ampDraw.add(ampList.getCreature((int)random(0, ampList.numCreatures()-1)));
         }
 
         for (int i = 0; i < creatures[currId][1]; i++) {
-          birdDraw.add( birdList.getCreature((int)random(0, birdList.numCreatures()-1)));
+          birdDraw.add(birdList.getCreature((int)random(0, birdList.numCreatures()-1)));
         }
 
         for (int i = 0; i < creatures[currId][2]; i++) {
-          insecDraw.add( insecList.getCreature((int)random(0, insecList.numCreatures()-1)));
+          insecDraw.add(insecList.getCreature((int)random(0, insecList.numCreatures()-1)));
         }
 
         for (int i = 0; i < creatures[currId][3]; i++) {
-          mammalsDraw.add( mammalsList.getCreature((int)random(0, mammalsList.numCreatures()-1)));
+          mammalsDraw.add(mammalsList.getCreature((int)random(0, mammalsList.numCreatures()-1)));
         }
 
         for (int i = 0; i < creatures[currId][4]; i++) {
-          plantsDraw.add( plantsList.getCreature((int)random(0, plantsList.numCreatures()-1)));
+          plantsDraw.add(plantsList.getCreature((int)random(0, plantsList.numCreatures()-1)));
         }
 
         sliderCount.setValue(sliderCount.getValue() + 1);
@@ -270,6 +266,8 @@ void updateGUI() {
         }
       } else {
         sliderCount.setValue(0);
+        println("reset");
+        bkg.toogleDirection();
       }
       controlTimer.reset();
     }

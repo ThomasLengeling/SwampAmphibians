@@ -22,7 +22,7 @@ class CreaturesParticle {
     creature         = new Creatures(name);
 
     creationTime     = 0.0;
-    creationInc      = random(0.06, 0.095);
+    creationInc      = random(0.02, 0.1);
   }
 
 

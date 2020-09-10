@@ -31,7 +31,7 @@ boolean   ignoringStyles = true;
 
 boolean   drawIndividuals = true;
 boolean   drawMap = false;
-boolean   drawGUI = true;
+boolean   drawGUI = false;
 
 //toogle timer
 boolean   toogleTimer = true;
@@ -47,7 +47,7 @@ Bkg bkg;
 void setup() {
   size(1200, 1200, P3D);
   smooth(16);
-  
+
   frameRate(30);
 
   RG.init(this);
@@ -84,13 +84,13 @@ void setup() {
   swampMap = new SwampMap();
 
   //clear background
-  background(255);
+  background(0);
 
   //create GUI
   setupGui();
 
- // randomSeed(0);
- // noiseSeed(0);
+  // randomSeed(0);
+  // noiseSeed(0);
 
   server = new SyphonServer(this, "Swamp");
 
@@ -100,7 +100,7 @@ void setup() {
   cp5.getController("NumMammals").setValue(creatures[0][3]);
   cp5.getController("NumPlants").setValue(creatures[0][4]);
 
-  bkg = new Bkg(3);
+  bkg = new Bkg(1);
 }
 
 //Main draw
@@ -217,7 +217,8 @@ void keyPressed() {
   }
 
   if (key == 'r') {
-    cp5.getController("NumAmp").setValue(1);
+    bkg.reset();
+    println("reset");
   }
 
   if (key == 'c') {
@@ -228,6 +229,9 @@ void keyPressed() {
     saveFrame("output/frames####.png");
   }
 
-  if (key == 'f') {
+  if (key == 't') {
+    bkg.toogleDirection();
   }
+  
+  
 }
