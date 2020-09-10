@@ -262,8 +262,10 @@ void updateGUI() {
         sliderCount.setValue(sliderCount.getValue() + 1);
 
         //clean bkg
-        if (currId == 8) {
+        if (currId == 5) {
+            bkg.toogleDirection();
         }
+        
       } else {
         sliderCount.setValue(0);
         println("reset");
